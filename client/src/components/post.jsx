@@ -13,7 +13,7 @@ const post = () => {
                 <a href="" className="author">Kumar Dos </a>
                 <time datetime="">05-11-2012 13:06</time>
             </p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis ex cupiditate earum ipsam veritatis mollitia omnis </p>
+            <p className='summary'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis ex cupiditate earum ipsam veritatis mollitia omnis </p>
         </div>
     </div>
   )

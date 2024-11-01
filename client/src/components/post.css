@@ -9,3 +9,20 @@
     margin: 0;
     font-size: 1.6rem;
 }
+
+.post .info{
+    margin: 7px 0;
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.post .info .author{
+    color: #6c6c6c;
+}
+
+.post .summary{
+    margin: 10px 0;
+    line-height: 1.4rem;
+}
