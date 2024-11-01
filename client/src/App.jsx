@@ -4,7 +4,8 @@ import Post from './components/post.jsx';
 import {Routes, Route} from 'react-router-dom';
 import Layout from './components/layout.jsx';
 import IndexPages from './components/pages/indexpage.jsx';
-import Loginpage from './components/pages/loginpage.jsx'
+import Loginpage from './components/pages/loginpage.jsx';
+import Registerpage from './components/pages/registerpage.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={ <IndexPages /> }/>
         <Route path="/login" element={ <Loginpage /> } />
+        <Route path="/register" element={ <Registerpage /> } />
       </Route>
     </Routes>
 
