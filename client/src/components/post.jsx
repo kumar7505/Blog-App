@@ -9,6 +9,10 @@ const post = () => {
         </div>
         <div className="texts">
             <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+            <p className="info">
+                <a href="" className="author">Kumar Dos </a>
+                <time datetime="">05-11-2012 13:06</time>
+            </p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis ex cupiditate earum ipsam veritatis mollitia omnis </p>
         </div>
     </div>

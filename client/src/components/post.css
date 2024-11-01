@@ -1,6 +1,7 @@
 .post{
+    padding: 0 2.0rem;
     display: grid;
-    grid-template-columns: 0.9fr 1.0fr;
+    grid-template-columns: 0.9fr 1.1fr;
     gap: 20px;
 }
 
