@@ -1,0 +1,10 @@
+.post{
+    display: grid;
+    grid-template-columns: 0.9fr 1.0fr;
+    gap: 20px;
+}
+
+.post .texts h2{
+    margin: 0;
+    font-size: 1.6rem;
+}
