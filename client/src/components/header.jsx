@@ -1,15 +1,16 @@
 import React from 'react';
 import {useState} from 'react';
 import './header.css';
+import {Link} from 'react-router-dom'
 
 const header = () => {
   return (
     <main>
         <header >
-            <a href="" classname="brand" style={{fontWeight: 'bold', fontSize: '1.5rem'}}>My Blog</a>
+            <Link to="/" className="brand" >My Blog</Link>
             <nav>
-                <a href="">Login</a>
-                <a href="">Register</a>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
             </nav>
         </header>                       
     </main>
