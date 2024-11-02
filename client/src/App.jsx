@@ -18,7 +18,6 @@ function App() {
         <Route path="/register" element={ <Registerpage /> } />
       </Route>
     </Routes>
-
   )
 }
 
