@@ -37,6 +37,16 @@ const header = () => {
     fetchUserProfile();
   }, []); // Empty dependency array to run only on mount
 
+  function logout(){
+    console.log(70000);
+    fetch('http://localhost:8000/logout',{
+      credentials: 'include',
+      method: 'POST',
+    })
+    window.location.reload(); 
+    setUsername(null);
+  }
+
   return (
     <main>
         <header >
@@ -45,6 +55,7 @@ const header = () => {
               {userName && (
                 <>
                   <Link to='/create'>Create new post</Link>
+                  <a onClick={logout}>Logout</a>
                 </>
               )}
               {!userName && 

@@ -31,6 +31,7 @@ const loginpage = () => {
         console.log(redirect);
         setRedirect(false);
         navigate('/');
+        window.location.reload(); 
       }
   }
 
