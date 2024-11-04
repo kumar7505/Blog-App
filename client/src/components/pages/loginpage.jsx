@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from './authcontext';
 import './page.css';
 
 const loginpage = () => {
@@ -7,26 +8,45 @@ const loginpage = () => {
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
+  const { setUsername: setAuthUsername } = useAuth(); 
 
   async function login(e){
     e.preventDefault();
-    
     const response = await fetch('http://localhost:8000/login', { 
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type': 'application/json'},
       credentials: 'include',
-    });
+    }); 
+
     if(response.ok){
+      const userInfo = await response.json();
       setRedirect(true);
+      alert("Login successful!, Welcome, " + userInfo);
+      setAuthUsername(userInfo.username);  
     } else
       alert('Wrong Credentials');
 
       if(redirect){
         console.log(redirect);
+        setRedirect(false);
         navigate('/');
       }
   }
+
+  const fetchUserProfile = async () => {
+    const response = await fetch('http://localhost:8000/profile', {
+      credentials: 'include',
+    });
+  
+    if (response.ok) {
+      const userInfo = await response.json();
+      console.log('User info:', userInfo);
+      // You can set the user info in a global state or context if needed
+    } else {
+      console.error('Failed to fetch user profile');
+    }
+  };  
 
   return (
     <div>
