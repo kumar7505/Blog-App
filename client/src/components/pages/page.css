@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+a{
+    color: black;
+    cursor: pointer;
+}
+
 form.login, form.register{
     max-width: 400px;
     margin: 0 auto;

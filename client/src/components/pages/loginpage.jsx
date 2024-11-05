@@ -6,7 +6,6 @@ import './page.css';
 const loginpage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
   const { setUsername: setAuthUsername } = useAuth(); 
 
@@ -21,18 +20,15 @@ const loginpage = () => {
 
     if(response.ok){
       const userInfo = await response.json();
-      setRedirect(true);
+      // setRedirect(true);
       alert("Login successful!, Welcome, " + userInfo);
       setAuthUsername(userInfo.username);  
+
+      navigate('/');
+      window.location.reload(); 
     } else
       alert('Wrong Credentials');
 
-      if(redirect){
-        console.log(redirect);
-        setRedirect(false);
-        navigate('/');
-        window.location.reload(); 
-      }
   }
 
   const fetchUserProfile = async () => {
