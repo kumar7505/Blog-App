@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useState, useEffect} from 'react';
 import './header.css';
-import {Link} from 'react-router-dom'; 
+import {Link, useNavigate} from 'react-router-dom'; 
 import { useAuth } from './pages/authcontext'; 
+import { userContext } from './usercontext';
 
 const header = () => {
 
-  const { username } = useAuth();
+  const navigate = useNavigate();
   const [userName, setUsername] = useState(null);
+  const {setUserInfo} = useContext(userContext);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -43,9 +45,12 @@ const header = () => {
       credentials: 'include',
       method: 'POST',
     })
-    window.location.reload(); 
+    navigate('/login');
     setUsername(null);
+    window.location.reload(); 
   }
+
+  const username = userInfo?.username;
 
   return (
     <main>
