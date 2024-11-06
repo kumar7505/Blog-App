@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useAuth} from './authcontext';
 import './page.css';
+import { UserContext } from '../../UserContext';
 
 const loginpage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { setUsername: setAuthUsername } = useAuth(); 
+  const {setUserInfo} = useContext(UserContext);
 
   async function login(e){
     e.preventDefault();
@@ -22,7 +22,7 @@ const loginpage = () => {
       const userInfo = await response.json();
       // setRedirect(true);
       alert("Login successful!, Welcome, " + userInfo);
-      setAuthUsername(userInfo.username);  
+      setUserInfo(userInfo);  
 
       navigate('/');
       window.location.reload(); 

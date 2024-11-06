@@ -5,11 +5,15 @@ const User = require('./models/user.js');
 const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+
+const path = require('path');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = '5yvhedsi8ejhrf5ejhbdrei7576edrft';
 require('dotenv').config();
 const app = express();
+const uploadMiddleWare = multer({ dest: './uploads/' });
 
 const REACT_PORT = process.env.REACT_PORT
 const MONGO_URL = process.env.MONGO_URL;
@@ -42,7 +46,10 @@ app.post('/login', async (req, res) => {
     if(pass0k){
         jwt.sign({username, id: userDoc._id}, secret, {}, (err, token) => {
             if(err) throw err;
-            res.cookie('token', token, {httpOnly: true}).json(username);
+            res.cookie('token', token, {httpOnly: true}).json({
+                id:userDoc._id,
+                username,
+            });
         })
     } else {
         res.status(400).json('Wrong Credintials');
@@ -79,4 +86,9 @@ app.post('/logout', (req, res) => {
     console.log('kumar');
     res.cookie('token', '').json('ok');
 })
+
+app.post('/post', uploadMiddleWare.single('file'), (req, res) => {
+    res.json(req.files.file);
+});
+
 app.listen(8000);

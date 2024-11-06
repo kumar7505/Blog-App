@@ -2,13 +2,11 @@ import React, { useContext } from 'react';
 import {useState, useEffect} from 'react';
 import './header.css';
 import {Link, useNavigate} from 'react-router-dom'; 
-import { useAuth } from './pages/authcontext'; 
 import { UserContext } from '../UserContext';
 
 const header = () => {
 
   const navigate = useNavigate();
-  const [userName, setUsername] = useState(null);
   const {userInfo, setUserInfo} = useContext(UserContext);
 
   useEffect(() => {
@@ -29,7 +27,7 @@ const header = () => {
 
         const userInfo = await response.json();
         console.log('User info:', userInfo.username);
-        setUsername(userInfo.username);
+        setUserInfo(userInfo);
       } catch (error) {
         console.error('Error fetching user profile:', error);
         setUsername(null); // Reset username on error
@@ -46,7 +44,7 @@ const header = () => {
       method: 'POST',
     })
     navigate('/login');
-    setUsername(null);
+    setUserInfo(null);
     window.location.reload(); 
   }
 
@@ -57,13 +55,13 @@ const header = () => {
         <header >
             <Link to="/" className="brand" >My Blog</Link>
             <nav>
-              {userName && (
+              {username && (
                 <>
                   <Link to='/create'>Create new post</Link>
                   <a onClick={logout}>Logout</a>
                 </>
               )}
-              {!userName && 
+              {!username && 
                 <>
                   <Link to="/login">Login</Link>
                   <Link to="/register">Register</Link>

@@ -32,6 +32,11 @@ form button{
     padding: 7px 0;
 }
 
-form h1{
+form.login form.register h1{
     text-align: center;
+}
+
+form button:hover{
+    background-color: #9f9f9f;
+    color: #222;
 }
