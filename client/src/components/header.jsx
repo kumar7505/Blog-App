@@ -3,13 +3,13 @@ import {useState, useEffect} from 'react';
 import './header.css';
 import {Link, useNavigate} from 'react-router-dom'; 
 import { useAuth } from './pages/authcontext'; 
-import { userContext } from './usercontext';
+import { UserContext } from '../UserContext';
 
 const header = () => {
 
   const navigate = useNavigate();
   const [userName, setUsername] = useState(null);
-  const {setUserInfo} = useContext(userContext);
+  const {userInfo, setUserInfo} = useContext(UserContext);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
