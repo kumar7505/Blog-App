@@ -36,15 +36,15 @@ const createpost = () => {
     data.set('summary', summary);
     data.set('content', content);
     if(files)
-      data.set('files', files[0]);
+      data.set('file', files[0]);
   
-    console.log(data);
+    console.log(data + 'karthi');
     const response = await fetch('http://localhost:8000/post', {
       method: 'POST',
       body: data,
       credentials: 'include'
     });
-    console.log(await response.json());
+    // console.log(await response.json() + 'kumar');
   }
 
   return (

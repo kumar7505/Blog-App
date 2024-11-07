@@ -2,10 +2,12 @@ const express= require('express');
 const cors= require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user.js');
+const Post = require('./models/post.js')
 const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
+const fs = require('fs-extra');
 
 const path = require('path');
 
@@ -84,11 +86,30 @@ app.get('/profile', (req, res) => {
 
 app.post('/logout', (req, res) => {
     console.log('kumar');
-    res.cookie('token', '').json('ok');
+    res.cookie('token', '').json({files: req.file});
 })
 
-app.post('/post', uploadMiddleWare.single('file'), (req, res) => {
-    res.json(req.files.file);
+app.post('/post', uploadMiddleWare.single('file'), async (req, res) => {
+    const {originalname} = req.file;
+    console.log(originalname);
+
+    const parts = originalname.split('.');
+    const ext = parts[parts.length - 1];
+    const newPath = path+'.'+ext;
+    fs.removeSync(req.file.path, newPath);
+    
+    
+    const {title, summary, content} = req.body;
+    if (!title || !summary || !content) {
+        console.log({ error: 'Title, summary, and content are required.' });
+    }
+    console.log(content);
+    const postDoc = await Post.create({
+        title, summary, content,
+        cover:newPath,
+    });
+
+    res.json(postDoc);
 });
 
 app.listen(8000);
