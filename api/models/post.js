@@ -4,7 +4,7 @@ const {Schema, model} = mongoose;
 const PostSchema = Schema({
     title: String,
     summary: String, 
-    aontent: String,
+    content: String,
     cover: String,
 }, {
     timestamps: true,
