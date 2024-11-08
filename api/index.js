@@ -25,6 +25,7 @@ app.use(express.json());
 console.log("Setting up cookie parser...");
 app.use(cookieParser());
 console.log("Cookie parser is set up.");
+app.use('/uploads', express.static(path.join(__dirname + 'uploads')));
 
 mongoose.connect(MONGO_URL)
     .then(() => {
@@ -95,21 +96,39 @@ app.post('/post', uploadMiddleWare.single('file'), async (req, res) => {
 
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
-    const newPath = path+'.'+ext;
-    fs.removeSync(req.file.path, newPath);
+    const newPath = path.join('uploads', `${Date.now()}.${ext}`);
+    console.log(path.join(__dirname, newPath));
+    fs.removeSync(req.file.path, path.join(__dirname, newPath));;
     
     
     const {title, summary, content} = req.body;
     if (!title || !summary || !content) {
         console.log({ error: 'Title, summary, and content are required.' });
     }
-    console.log(content);
-    const postDoc = await Post.create({
-        title, summary, content,
-        cover:newPath,
+
+    const { token } = req.cookies;
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) {
+            return res.status(401).json({ error: 'Invalid token' });
+        }
+        const postDoc = await Post.create({
+            title, 
+            summary, 
+            content,
+            cover:newPath,
+            author: info.id,
+        });
+        res.json(info);
     });
 
-    res.json(postDoc);
+    console.log(content);
+});
+
+app.get('/post', async (req, res) => {
+    res.json(await Post.find()
+    .populate('author', ['username'])
+.sort({createdAt: -1})
+.limit(20));
 });
 
 app.listen(8000);

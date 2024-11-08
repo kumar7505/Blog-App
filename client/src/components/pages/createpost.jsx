@@ -48,12 +48,11 @@ const createpost = () => {
       credentials: 'include'
     });
 
-    if(response.ok)
-      setRedirect(true);
+    if(response.ok){
+      alert('Blog Created');
+    } else
+      alert('Blog was not created');
 
-    if(redirect){
-      return <Navigate to={'/'} />
-    }
   }
 
   return (
@@ -64,6 +63,8 @@ const createpost = () => {
               onChange={e => setFiles(e.target.files)} /> 
       <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules={modules} formats={formats}/>
       <button style={{marginTop:'5px'}} >Create Post</button>
+
+      {redirect && <Navigate to={"/"} />};
      </form>
   );
 }

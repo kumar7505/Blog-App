@@ -30,7 +30,6 @@ const header = () => {
         setUserInfo(userInfo);
       } catch (error) {
         console.error('Error fetching user profile:', error);
-        setUsername(null); // Reset username on error
       }
     };
 
