@@ -11,6 +11,8 @@ const fs = require('fs-extra');
 
 const path = require('path');
 
+react_app_PORT_number = 5173;
+
 const salt = bcrypt.genSaltSync(10);
 const secret = '5yvhedsi8ejhrf5ejhbdrei7576edrft';
 require('dotenv').config();
@@ -20,12 +22,12 @@ const uploadMiddleWare = multer({ dest: './uploads/' });
 const REACT_PORT = process.env.REACT_PORT
 const MONGO_URL = process.env.MONGO_URL;
 
-app.use(cors({credentials: true, origin: `http://localhost:5173`}));
+app.use(cors({credentials: true, origin: `http://localhost:${react_app_PORT_number}`}));
 app.use(express.json());
 console.log("Setting up cookie parser...");
 app.use(cookieParser());
 console.log("Cookie parser is set up.");
-app.use('/uploads', express.static(path.join(__dirname + 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(MONGO_URL)
     .then(() => {
@@ -98,8 +100,7 @@ app.post('/post', uploadMiddleWare.single('file'), async (req, res) => {
     const ext = parts[parts.length - 1];
     const newPath = path.join('uploads', `${Date.now()}.${ext}`);
     console.log(path.join(__dirname, newPath));
-    fs.removeSync(req.file.path, path.join(__dirname, newPath));;
-    
+    fs.moveSync(req.file.path, path.join(__dirname, newPath));
     
     const {title, summary, content} = req.body;
     if (!title || !summary || !content) {

@@ -29,6 +29,8 @@ const createpost = () => {
   async function createNewPost(e) {
     e.preventDefault();
 
+    const cleanContent = content.replace(/<[^>]*>/g, '');
+
     if (!title || !summary || !content) {
       alert('Title, summary, and content are required.');
       return;
@@ -37,7 +39,7 @@ const createpost = () => {
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
-    data.set('content', content);
+    data.set('content', cleanContent);
     if(files)
       data.set('file', files[0]);
   

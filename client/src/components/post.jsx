@@ -3,10 +3,11 @@ import './post.css';
 import {formatISO9075} from "date-fns";
 
 const post = ({title, summary, cover, content, createdAt, author}) => {
+  console.log(cover);
   return (
     <div className='post'>
         <div className="image">
-            <img src={`http://localhost:8000/uploads/${cover}`} alt="Post Cover" />
+            <img src={`http://localhost:8000/${cover}`} alt="Post Cover" />
         </div>
         <div className="texts">
             <h2>{content}</h2>
