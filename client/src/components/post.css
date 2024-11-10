@@ -11,15 +11,26 @@
 }
 
 .post .info{
-    margin: 7px 0;
-    color: #888;
+    margin: 0.77rem 0;
+    color: #979797;
     font-size: 0.8rem;
     font-weight: bold;
     gap: 10px;
 }
+.post .image{
+    width: 100%;
+    align-items: center;
+}
 
 .post .info .author{
-    color: #6c6c6c;
+    font-weight: 2500;
+    margin-right: 5px;
+    color: #574040;
+}
+
+.post .info time{
+    font-weight: 500;
+    margin-right: 5px;
 }
 
 .post .summary{

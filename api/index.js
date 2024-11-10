@@ -88,7 +88,6 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-    console.log('kumar');
     res.cookie('token', '').json({files: req.file});
 })
 
@@ -131,5 +130,12 @@ app.get('/post', async (req, res) => {
 .sort({createdAt: -1})
 .limit(20));
 });
+
+// to display blog
+app.get('/post/:id', async(req, res) => {
+    const {id} = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    res.json(postDoc);
+})
 
 app.listen(8000);
