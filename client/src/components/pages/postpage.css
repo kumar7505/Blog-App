@@ -3,6 +3,7 @@
     max-height: 300px;
     width: 100%;
     overflow: hidden;
+    margin-bottom: 15px;
     /* background: linear-gradient(110deg, rgb(244, 244, 244), rgb(233, 232, 232)); */
 }
 
@@ -39,4 +40,22 @@
 
 .post-page .content{
     line-height: 1.6rem;
+}
+
+.post-page .edit-row{
+    text-align: center;
+}
+
+.post-page .edit-btn{
+    border-radius: 5px;
+    margin-bottom: 9px;
+    background-color: #333;
+    display: inline-flex;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    gap: 5px;
+}   
+
+.post-page .edit-btn .edit-icon{
 }
