@@ -1,9 +1,17 @@
 .post{
     padding: 0 2.0rem;
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 0.9fr 1.1fr; */
+    gap: 18px;
     align-items: center;
+    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 600px){
+    .post{
+        grid-template-columns: .9fr 1.1fr;
+    }
 }
 
 .post .texts h2{
@@ -21,6 +29,10 @@
 .post .image{
     width: 100%;
     align-items: center;
+}
+
+.post .image img{
+    border-radius: 8px;
 }
 
 .post .info .author{

@@ -1,9 +1,9 @@
 .post-page .image{
     display: flex;
-    max-height: 450px;
+    max-height: 300px;
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(110deg, rgb(244, 244, 244), rgb(233, 232, 232));
+    /* background: linear-gradient(110deg, rgb(244, 244, 244), rgb(233, 232, 232)); */
 }
 
 .post-page .image img{
@@ -33,4 +33,10 @@
 .post-page .author{
     text-align: center;
     margin-bottom: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.post-page .content{
+    line-height: 1.6rem;
 }

@@ -14,7 +14,7 @@ const indexpage = () => {
   return (
     <>
         {posts.length > 0 && posts.map(post => (
-          <Post {...post} key={post.content}/> 
+          <Post {...post} key={post.content} style={{marginBottom: '50px'}} /> 
         ))}
     </>
   );
