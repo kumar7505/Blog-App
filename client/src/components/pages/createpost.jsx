@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './createpost.css';
 import {Navigate, useNavigate} from 'react-router-dom';
+import Editor from '../editor';
 
 const createpost = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const createpost = () => {
   const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
+
   const modules = {
     toolbar: [
       [{ 'header': [1, 2, false] }],
@@ -26,6 +28,7 @@ const createpost = () => {
     'list', 'bullet', 'indent',
     'link', 'image'
   ];
+  
   async function createNewPost(e) {
     e.preventDefault();
 
@@ -64,6 +67,7 @@ const createpost = () => {
       <input type="file"
               onChange={e => setFiles(e.target.files)} /> 
       <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules={modules} formats={formats}/>
+      <Editor value={content} onChange={setContent}/>
       <button style={{marginTop:'5px'}} >Create Post</button>
 
       {redirect && <Navigate to={"/"} />};

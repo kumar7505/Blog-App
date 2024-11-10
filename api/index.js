@@ -124,7 +124,39 @@ app.post('/post', uploadMiddleWare.single('file'), async (req, res) => {
     console.log(content);
 });
 
-app.get('/post', async (req, res) => {
+app.put('/post', async (req, res) => {
+    let newOne = null;
+    if(req.file){
+        const {originalname} = req.file;
+
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        const newPath = path.join('uploads', `${Date.now()}.${ext}`);
+        fs.moveSync(req.file.path, path.join(__dirname, newPath));
+    }
+
+    const {token} = req.cookies;
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) throw err;
+        const postDoc = await Post.findbyId(id);
+        const isAuthor = JSON.stringyfy(postDoc.author) === JSON.Stringyfy(info.id);
+
+        // ({
+        //     title, 
+        //     summary, 
+        //     content,
+        //     cover:newPath,
+        //     author: info.id,
+        // });
+        if(!isAuthor){
+            res.status(400).json('');
+            throw 'you are not the author';
+        }
+        res.json(info);
+    });
+})
+
+app.get('/post', uploadMiddleWare.single('file'), async (req, res) => {
     res.json(await Post.find()
     .populate('author', ['username'])
 .sort({createdAt: -1})

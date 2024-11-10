@@ -9,6 +9,7 @@ import Registerpage from "./components/pages/registerpage.jsx";
 import UserContextProvider from "./UserContext.jsx";
 import CreatePost from "./components/pages/createpost.jsx";
 import PostPage from "./components/pages/postpage.jsx";
+import EditPost from "./components/pages/editpost.jsx"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Registerpage />} />
           <Route path="/create" element={<CreatePost />}/>
           <Route path="/post/:id" element={<PostPage />} />
+          <Route path="/edit/:id" element={<EditPost />} />
         </Route>
       </Routes>
     </UserContextProvider>
