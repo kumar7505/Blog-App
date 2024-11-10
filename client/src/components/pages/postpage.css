@@ -1,0 +1,36 @@
+.post-page .image{
+    display: flex;
+    max-height: 450px;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(110deg, rgb(244, 244, 244), rgb(233, 232, 232));
+}
+
+.post-page .image img{
+    margin: 0 auto;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-page a{
+    color: #333;
+    text-decoration: underline;
+}
+
+.post-page h1{
+    text-align: center;
+    margin: 10px 0 5px;
+}
+
+.post-page time{
+    text-align: center;
+    display: block;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.post-page .author{
+    text-align: center;
+    margin-bottom: 20px;
+}

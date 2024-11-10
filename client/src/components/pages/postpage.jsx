@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './postpage.css';
+import {formatISO9075} from "date-fns";
 
 const postpage = () => {
     const id = useParams();
@@ -18,11 +20,15 @@ const postpage = () => {
 
     if(!postInfo) 
         return <p>Loading..</p>;
-
+    console.log(postInfo);
     return (
         <div className="post-page">
-            <div className="image"><img src={`http://localhost:8000/${postInfo.cover}`} alt="Post Image" /></div>
             <h1>{postInfo.title}</h1>
+            <time dateTime='postInfo.createdAt'>{formatISO9075(new Date(postInfo.createdAt))}</time>
+            <div className="author">by @{postInfo.author.username}</div>
+            <div className="image">
+                <img src={`http://localhost:8000/${postInfo.cover}`} alt="Post Image" />
+            </div>
             <div dangerouslySetInnerHTML={{__html:postInfo.content}}></div>
         </div>
     )
