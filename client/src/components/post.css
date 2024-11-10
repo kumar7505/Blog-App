@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
     gap: 20px;
+    align-items: center;
 }
 
 .post .texts h2{
