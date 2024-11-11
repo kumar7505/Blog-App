@@ -124,23 +124,23 @@ app.post('/post', uploadMiddleWare.single('file'), async (req, res) => {
     console.log(content);
 });
 
-app.put('/post', async (req, res) => {
-    let newOne = null;
+app.put('/post', uploadMiddleWare.single('file'), async (req, res) => {
+    let newPath = '';
     if(req.file){
         const {originalname} = req.file;
 
         const parts = originalname.split('.');
         const ext = parts[parts.length - 1];
-        const newPath = path.join('uploads', `${Date.now()}.${ext}`);
+        newPath = path.join('uploads', `${Date.now()}.${ext}`);
         fs.moveSync(req.file.path, path.join(__dirname, newPath));
     }
-
     const {token} = req.cookies;
     jwt.verify(token, secret, {}, async (err, info) => {
         if (err) throw err;
-        const postDoc = await Post.findbyId(id);
-        const isAuthor = JSON.stringyfy(postDoc.author) === JSON.Stringyfy(info.id);
-
+        const {id,title,summary,content} = req.body;
+        const postDoc = await Post.findById(id);
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+        
         // ({
         //     title, 
         //     summary, 
@@ -152,13 +152,21 @@ app.put('/post', async (req, res) => {
             return res.status(400).json('');
         }
 
-        await postDoc.update({
-            title, 
-            summary,
-            content,
-            cover: 
-                newPath ? newPath : postDoc.cover,
-        });
+        // await postDoc.update({
+        //     title, 
+        //     summary,
+        //     content,
+        //     cover: 
+        //         newPath ? newPath : postDoc.cover,
+        // });
+        
+        postDoc.title = title;
+        postDoc.summary = summary;
+        postDoc.content = content;
+        postDoc.cover = newPath ? newPath : postDoc.cover;
+
+        await postDoc.save();  // Save the updated document
+
         res.json(info);
     });
 })

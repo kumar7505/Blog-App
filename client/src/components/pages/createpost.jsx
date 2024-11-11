@@ -32,7 +32,7 @@ const createpost = () => {
   async function createNewPost(e) {
     e.preventDefault();
 
-    const cleanContent = content.replace(/<[^>]*>/g, '');
+    // const cleanContent = content.replace(/<[^>]*>/g, '');
 
     if (!title || !summary || !content) {
       alert('Title, summary, and content are required.');

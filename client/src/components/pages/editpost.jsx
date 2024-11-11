@@ -38,7 +38,8 @@ const editpost = () => {
             body: data,
             credentials: "include",
         });
-        return <Navigate to={`/post/${id}`} />
+        alert('Post is Updated')
+        return <Navigate to={`/post`} />
     }
 
     const modules = {
@@ -55,7 +56,7 @@ const editpost = () => {
         <form onSubmit={updatePost}>
             <input type="text" 
             value={title}
-                placeholer='title' 
+                placeholder='title' 
                 onChange={e => setTitle(e.target.value)}/>   
             <input type="summary" 
                 placeholer={'summary'} 
