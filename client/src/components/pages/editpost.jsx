@@ -12,6 +12,7 @@ const editpost = () => {
     const [redirect, setRedirect] = useState('');
 
     useEffect(() => {
+        console.log(id);
         fetch(`http://localhost:8000/post/${id}`)
             .then(res => {
                 res.json().then(postInfo => {
@@ -20,7 +21,7 @@ const editpost = () => {
                     setSummary(postInfo.summary);
                 })
             })
-    });
+    }, []);
 
     async function updatePost(e) {
         e.preventDefault();
@@ -31,10 +32,11 @@ const editpost = () => {
         data.set('id', id);
         if(files?.[0])
             data.set('file', files?.[0]);
-        await fetch('http://localhost:8000/post', {
+        console.log('oi selfie');
+        await fetch(`http://localhost:8000/post`, {
             method: 'PUT',
             body: data,
-            credentials: include,
+            credentials: "include",
         });
         return <Navigate to={`/post/${id}`} />
     }
@@ -51,11 +53,17 @@ const editpost = () => {
 
     return (
         <form onSubmit={updatePost}>
-            <input type="text" placeholer='title' value={title} onChange={e => setTitle(e.target.value)}/>   
-            <input type="summary" placeholer={'summary'} value={summary} onChange={e => setSummary(e.target.value)}/>  
+            <input type="text" 
+            value={title}
+                placeholer='title' 
+                onChange={e => setTitle(e.target.value)}/>   
+            <input type="summary" 
+                placeholer={'summary'} 
+                value={summary} 
+                onChange={e => setSummary(e.target.value)}/>  
             <input type="file"
                     onChange={e => setFiles(e.target.files)} /> 
-            <Editor onChange={setContent} value={content} />
+            <Editor value={content} onChange={setContent} />
             {/* <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules={modules} /> */}
             <button style={{marginTop:'5px'}} >Update Post</button>
 

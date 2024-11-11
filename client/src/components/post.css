@@ -8,7 +8,7 @@
     margin-bottom: 10px;
 }
 
-@media screen and (min-width: 600px){
+@media screen and (min-width: 800px){
     .post{
         grid-template-columns: .9fr 1.1fr;
     }
@@ -29,6 +29,11 @@
 .post .image{
     width: 100%;
     align-items: center;
+}
+
+
+
+.post .image .texts{
 }
 
 .post .image img{

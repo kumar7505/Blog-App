@@ -55,6 +55,7 @@ const createpost = () => {
 
     if(response.ok){
       alert('Blog Created');
+      return <Navigate to={'/'} />
     } else
       alert('Blog was not created');
 
@@ -66,7 +67,7 @@ const createpost = () => {
       <input type="summary" placeholer={'summary'} value={summary} onChange={e => setSummary(e.target.value)}/>  
       <input type="file"
               onChange={e => setFiles(e.target.files)} /> 
-      <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules={modules} formats={formats}/>
+      {/* <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules={modules} formats={formats}/> */}
       <Editor value={content} onChange={setContent}/>
       <button style={{marginTop:'5px'}} >Create Post</button>
 

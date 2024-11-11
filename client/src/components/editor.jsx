@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 
-const editor = () => {
+const editor = ({value, onChange}) => {
     const modules = {
         toolbar: [
           [{ 'header': [1, 2, false] }],
@@ -17,7 +17,8 @@ const editor = () => {
 
     return (
         <div>
-            <ReactQuill value="" onChange="" modules={modules} />
+          {console.log('kumar')}
+            <ReactQuill value={value} onChange={onChange} modules={modules} />
         </div>
     );
 };

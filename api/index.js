@@ -149,9 +149,16 @@ app.put('/post', async (req, res) => {
         //     author: info.id,
         // });
         if(!isAuthor){
-            res.status(400).json('');
-            throw 'you are not the author';
+            return res.status(400).json('');
         }
+
+        await postDoc.update({
+            title, 
+            summary,
+            content,
+            cover: 
+                newPath ? newPath : postDoc.cover,
+        });
         res.json(info);
     });
 })
