@@ -15,7 +15,7 @@ const footer = () => {
 
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-                        voluptatem corporis error non, You connect us with this social media platform.
+                        voluptatem corporis error non, 
                     </p>
 
                     <div class="social">
