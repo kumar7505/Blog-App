@@ -42,7 +42,7 @@ const createpost = () => {
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
-    data.set('content', cleanContent);
+    data.set('content', content);
     if(files)
       data.set('file', files[0]);
   

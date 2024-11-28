@@ -14,7 +14,7 @@ const path = require('path');
 react_app_PORT_number = 5173;
 
 const salt = bcrypt.genSaltSync(10);
-const secret = '5yvhedsi8ejhrf5ejhbdrei7576edrft';
+const secret = process.env.SECRET;
 require('dotenv').config();
 const app = express();
 const uploadMiddleWare = multer({ dest: './uploads/' });
