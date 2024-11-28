@@ -29,7 +29,7 @@ const header = () => {
         console.log('User info:', userInfo.username);
         setUserInfo(userInfo);
       } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Error fetching user profile:', error); 
       }
     };
 

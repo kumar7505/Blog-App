@@ -8,8 +8,8 @@ import './footer.css'
 const footer = () => {
     return (
         <footer>
-            <div class="row primary">
-                <div class="column about">
+            <div className="row primary">
+                <div className="column about">
 
                     <h3>Kollish Developer</h3>
 
@@ -18,15 +18,15 @@ const footer = () => {
                         voluptatem corporis error non, 
                     </p>
 
-                    <div class="social">
-                        <i class="fa-brands fa-facebook-square" style={{color: 'blue'}}></i>
-                        <i class="fa-brands fa-instagram-square" style={{color: '#ff0084'}}></i>
-                        <i class="fa-brands fa-twitter-square" style={{color: 'rgb(0, 166, 255)'}}></i>
-                        <i class="fa-brands fa-youtube-square" style={{color: 'red'}}></i>
+                    <div className="social">
+                        <i className="fa-brands fa-facebook-square" style={{color: 'blue'}}></i>
+                        <i className="fa-brands fa-instagram-square" style={{color: '#ff0084'}}></i>
+                        <i className="fa-brands fa-twitter-square" style={{color: 'rgb(0, 166, 255)'}}></i>
+                        <i className="fa-brands fa-youtube-square" style={{color: 'red'}}></i>
                     </div>
                 </div>
 
-                <div class="column subscribe">
+                <div className="column subscribe">
                     <h3>Newsletter for Premium</h3>
                     <div>
                         <input type="email" placeholder="Your email id here" />
@@ -34,7 +34,7 @@ const footer = () => {
                     </div>
                 </div>
                 
-                <div class="column links">
+                <div className="column links">
                     <h3>Contact US</h3>
                     <ul>
                         <li><a href="#name">Kumar P</a></li>
@@ -47,8 +47,8 @@ const footer = () => {
             
             </div>
 
-                <div class="row copyright">
-                    <div class="footer-menu">
+                <div className="row copyright">
+                    <div className="footer-menu">
                         <a href="">Home</a>
                         <a href="">About</a>
                         <a href="">Contact</a>
@@ -59,7 +59,7 @@ const footer = () => {
                 </div>
         </footer>
 
-        /* <div class="column links">
+        /* <div className="column links">
             <h3>Some Links</h3>
 
             <ul>
@@ -81,7 +81,7 @@ const footer = () => {
             </div>
 
 
-            <div class="column links">
+            <div className="column links">
             <h3>Some Links</h3>
             <ul>
                 <li>

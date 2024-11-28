@@ -56,13 +56,13 @@ const createpost = () => {
     if(response.ok){
       alert('Blog Created');
       return <Navigate to={'/'} />
-    } else
+    }else
       alert('Blog was not created');
 
   }
 
   return (
-     <form action="" onSubmit={createNewPost}>
+    <form action="" onSubmit={createNewPost}>
       <input type="text" placeholer='title' value={title} onChange={e => setTitle(e.target.value)}/>   
       <input type="summary" placeholer={'summary'} value={summary} onChange={e => setSummary(e.target.value)}/>  
       <input type="file"
@@ -72,7 +72,7 @@ const createpost = () => {
       <button style={{marginTop:'5px'}} >Create Post</button>
 
       {redirect && <Navigate to={"/"} />};
-     </form>
+    </form>
   );
 }
 
