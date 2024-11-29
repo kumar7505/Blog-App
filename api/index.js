@@ -13,7 +13,7 @@ const path = require('path');
 
 react_app_PORT_number = 5173;
 
-const salt = bcrypt.genSaltSync(10);
+const salt = bcrypt.genSaltSync(10);            
 const secret = process.env.SECRET;
 require('dotenv').config();
 const app = express();
@@ -47,11 +47,13 @@ app.post('/register',async (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password }= req.body;
     const userDoc = await User.findOne({ username });
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 30);
     const pass0k = userDoc && bcrypt.compareSync(password, userDoc.password);
     if(pass0k){
         jwt.sign({username, id: userDoc._id}, secret, {}, (err, token) => {
             if(err) throw err;
-            res.cookie('token', token, {httpOnly: true}).json({
+            res.cookie('token', token,  { expires: expirationDate }, {httpOnly: true}).json({
                 id:userDoc._id,
                 username,
             });
